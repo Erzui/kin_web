@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="TemplateData/style.css">
 	<script src="webxr-polyfill.js"></script>
 	<script>
-		var polyfill = new WebXRPolyfill();
+	  console.log('Lade WebXR Polyfill');
+	    window.addEventListener('load', () => 
+		{
+			var polyfill = new WebXRPolyfill();
+		});
+	  console.log('WebXR Polyfill geladen:', polyfill);
 	</script>
   </head>
   <body>
