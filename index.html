@@ -8,7 +8,10 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-	<script src="webxr-polyfill.js?v=1.0.0"></script>
+	<script src="webxr-polyfill.js"></script>
+	<script>
+		var polyfill = new WebXRPolyfill();
+	</script>
   </head>
   <body>
     <div id="unity-container">
@@ -30,7 +33,6 @@
       </div>
     </div>
     <script>
-	  var polyfill = new WebXRPolyfill();
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/6.loader.js";
       var config = {
