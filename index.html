@@ -8,14 +8,9 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-	<script src="webxr-polyfill.js"></script>
+	<script src='webxr-polyfill.js'></script>
 	<script>
-	  console.log('Lade WebXR Polyfill');
-	    window.addEventListener('load', () => 
-		{
-			var polyfill = new WebXRPolyfill();
-		});
-	  console.log('WebXR Polyfill geladen:', polyfill);
+		var polyfill = new WebXRPolyfill();
 	</script>
   </head>
   <body>
