@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | kin_</title>
+    <title>Unity WebGL Player | Kin_ WEbXR</title>
     <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-	<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://ar-js-org.github.io/AR.js/aframe/build/aframe-ar.js"></script>
   </head>
   <body>
     <div id="unity-container">
@@ -27,20 +25,20 @@
         <button id="entervr" value="Enter VR" disabled>VR</button>
         <button id="enterar" value="Enter AR" disabled>AR</button>
         <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div>
-        <div id="unity-build-title">kin_</div>
+        <div id="unity-build-title">Kin_ WEbXR</div>
       </div>
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/6.loader.js";
+      var loaderUrl = buildUrl + "/kin1.loader.js";
       var config = {
-        dataUrl: "https://media.githubusercontent.com/media/Erzui/kin_web/Page/Build/6.data",
-        frameworkUrl: buildUrl + "/6.framework.js",
-        codeUrl: buildUrl + "/6.wasm",
+        dataUrl:"https://media.githubusercontent.com/media/Erzui/kin_web/Page/Build/kin1.data",
+        frameworkUrl: buildUrl + "/kin1.framework.js",
+        codeUrl: buildUrl + "/kin1.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "charlotte triebus",
-        productName: "kin_",
-        productVersion: "1.3",
+        companyName: "DefaultCompany",
+        productName: "Kin_ WEbXR",
+        productVersion: "0.1",
       };
 
       var container = document.querySelector("#unity-container");
