@@ -27,68 +27,57 @@
         <div id="unity-build-title">Kin_ WEbXR</div>
       </div>
     </div>
-    <script>
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Sound.loader.js";
-      var config = {
-        dataUrl: "https://media.githubusercontent.com/media/Erzui/kin_web/Page/Build/Sound.data",
-        frameworkUrl: buildUrl + "/Sound.framework.js",
-        codeUrl: buildUrl + "/Sound.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "Kin_ WEbXR",
-        productVersion: "0.1",
-      };
+	<script>
+	  var buildUrl = "Build";
+	  var loaderUrl = buildUrl + "/Sound.loader.js";
+	  var config = {
+		dataUrl: "https://media.githubusercontent.com/media/Erzui/kin_web/Page/Build/Sound.data",
+		frameworkUrl: buildUrl + "/Sound.framework.js",
+		codeUrl: buildUrl + "/Sound.wasm",
+		streamingAssetsUrl: "StreamingAssets",
+		companyName: "DefaultCompany",
+		productName: "Kin_ WEbXR",
+		productVersion: "0.1",
+	  };
 
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var canvasContainer = document.querySelector("#unity-canvas-container");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var unityInstance = null;
-      
+	  var container = document.querySelector("#unity-container");
+	  var canvas = document.querySelector("#unity-canvas");
+	  var canvasContainer = document.querySelector("#unity-canvas-container");
+	  var loadingBar = document.querySelector("#unity-loading-bar");
+	  var progressBarFull = document.querySelector("#unity-progress-bar-full");
+	  var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+	  var unityInstance = null;
 
-      canvasContainer.style.width = "960px";
-      canvasContainer.style.height = "600px";
-      loadingBar.style.display = "block";
+	  canvasContainer.style.width = "960px";
+	  canvasContainer.style.height = "600px";
+	  loadingBar.style.display = "block";
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-        }).then((instance) => {
-          unityInstance = instance;
-          loadingBar.style.display = "none";
-          if (fullscreenButton)
-          {
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      document.body.appendChild(script);
+	  var script = document.createElement("script");
+	  script.src = loaderUrl;
+	  script.onload = () => {
+		createUnityInstance(canvas, config, (progress) => {
+		  progressBarFull.style.width = 100 * progress + "%";
+		}).then((instance) => {
+		  unityInstance = instance;
+		  loadingBar.style.display = "none";
 
-      let enterARButton = document.getElementById('enterar');
-      let enterVRButton = document.getElementById('entervr');
+		  // Versuche AR-Modus automatisch zu starten
+		  try {
+			unityInstance.Module.WebXR.toggleAR();
+		  } catch (e) {
+			console.error("AR konnte nicht automatisch gestartet werden:", e);
+		  }
 
-      document.addEventListener('onARSupportedCheck', function (event) {
-        enterARButton.disabled = !event.detail.supported;
-      }, false);
-      document.addEventListener('onVRSupportedCheck', function (event) {
-        enterVRButton.disabled = !event.detail.supported;
-      }, false);
-
-      enterARButton.addEventListener('click', function (event) {
-        unityInstance.Module.WebXR.toggleAR();
-      }, false);
-      enterVRButton.addEventListener('click', function (event) {
-        unityInstance.Module.WebXR.toggleVR();
-      }, false);
-    </script>
+		  if (fullscreenButton) {
+			fullscreenButton.onclick = () => {
+			  unityInstance.SetFullscreen(1);
+			};
+		  }
+		}).catch((message) => {
+		  alert(message);
+		});
+	  };
+	  document.body.appendChild(script);
+	</script>
   </body>
 </html>
