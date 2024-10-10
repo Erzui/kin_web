@@ -90,49 +90,5 @@
         unityInstance.Module.WebXR.toggleVR();
       }, false);
     </script>
-	<script>
-        // Funktion zum automatischen Starten von WebXR im AR-Modus
-        async function startAR() {
-            // Überprüfen, ob WebXR und AR unterstützt werden
-            if (navigator.xr && navigator.xr.isSessionSupported) {
-                const isArSupported = await navigator.xr.isSessionSupported('immersive-ar');
-
-                if (isArSupported) {
-                    try {
-                        // AR-Session automatisch starten
-                        const xrSession = await navigator.xr.requestSession('immersive-ar', {
-                            requiredFeatures: ['hit-test'],  // AR-spezifische Features
-                        });
-
-                        // Initialisierung des Renderer und der AR-Session
-                        onSessionStarted(xrSession);
-                    } catch (error) {
-                        console.error('AR-Session konnte nicht gestartet werden:', error);
-                    }
-                } else {
-                    console.error('AR wird auf diesem Gerät nicht unterstützt');
-                }
-            } else {
-                console.error('WebXR wird auf diesem Gerät nicht unterstützt');
-            }
-        }
-
-        // Beispiel-Funktion zur Handhabung der Session
-        function onSessionStarted(session) {
-            // Hier würdest du den WebXR-Renderer initialisieren und die Session behandeln
-            session.addEventListener('end', onSessionEnded);
-
-            // Zum Beispiel:
-            // Renderer initialisieren, Szene und Kamera für AR erstellen, etc.
-        }
-
-        // Beenden der AR-Session
-        function onSessionEnded(event) {
-            console.log('AR-Session beendet');
-        }
-
-        // AR beim Laden der Seite starten
-        window.onload = startAR;
-    </script>
   </body>
 </html>
